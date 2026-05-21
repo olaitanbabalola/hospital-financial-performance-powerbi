@@ -1,0 +1,52 @@
+table Dim_ServiceLine
+	lineageTag: 4eda8c93-7a43-49b1-976c-846d896246a6
+
+	column ServiceLineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 23dce4af-cbdf-417f-8778-09aa5449de48
+		summarizeBy: none
+		sourceColumn: ServiceLineKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceLine
+		dataType: string
+		lineageTag: 9913ba73-cff4-4a85-bb34-00364d8cf2df
+		summarizeBy: none
+		sourceColumn: ServiceLine
+
+		annotation SummarizationSetBy = Automatic
+
+	column Division
+		dataType: string
+		lineageTag: 3b6f95fe-408f-4fd3-b271-b390c1085ee2
+		summarizeBy: none
+		sourceColumn: Division
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsSpecialty
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e6f3dce5-cbc2-4b11-9ea8-c5b1df501950
+		summarizeBy: none
+		sourceColumn: IsSpecialty
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_ServiceLine = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("\\Mac\Home\Downloads\HospitalFinancialPerformance.xlsx"), null, true),
+				    Dim_ServiceLine_Sheet = Source{[Item="Dim_ServiceLine",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Dim_ServiceLine_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ServiceLineKey", Int64.Type}, {"ServiceLine", type text}, {"Division", type text}, {"IsSpecialty", type logical}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

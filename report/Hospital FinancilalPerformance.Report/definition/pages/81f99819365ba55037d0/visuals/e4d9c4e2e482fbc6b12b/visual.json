@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "e4d9c4e2e482fbc6b12b",
+  "position": {
+    "x": 0,
+    "y": 30.296127562642369,
+    "z": 11000,
+    "height": 151.48063781321184,
+    "width": 1069.0205011389521,
+    "tabOrder": 11000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Executive Summary for CFO",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "36pt",
+                      "color": "#6b007b"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

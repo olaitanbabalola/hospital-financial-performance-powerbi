@@ -1,0 +1,81 @@
+table Fact_OperatingCosts
+	lineageTag: aa7c7bfc-5575-4c01-9352-a4628542fdbc
+
+	column YearMonth
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d8c73902-cae9-423d-8a43-f17c9f463d94
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		variation Variation
+			isDefault
+			relationship: 96c3640d-d51d-4ae2-8563-eb0ef6c608b6
+			defaultHierarchy: LocalDateTable_0a21a388-a7cf-460c-bf5d-612e7afa9257.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 19f692be-6615-4f8f-a948-729281bfd09f
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 7b11d51a-47eb-40db-be4c-1d57760163a6
+			defaultHierarchy: LocalDateTable_50d9e5d2-f53f-42c7-9cbf-126e9c35de6b.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ServiceLineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f64f83ba-43fe-49bd-a7b4-c73f949fedce
+		summarizeBy: none
+		sourceColumn: ServiceLineKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CostCategory
+		dataType: string
+		lineageTag: 6e08546c-e17a-4097-a671-bf6ae1a9c9ce
+		summarizeBy: none
+		sourceColumn: CostCategory
+
+		annotation SummarizationSetBy = Automatic
+
+	column Amount
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: f5dc808b-5a5b-4d80-9481-028ce0fca057
+		summarizeBy: sum
+		sourceColumn: Amount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition Fact_OperatingCosts = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("\\Mac\Home\Downloads\HospitalFinancialPerformance.xlsx"), null, true),
+				    Fact_OperatingCosts_Sheet = Source{[Item="Fact_OperatingCosts",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Fact_OperatingCosts_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"YearMonth", type date}, {"Date", type date}, {"ServiceLineKey", Int64.Type}, {"CostCategory", type text}, {"Amount", type number}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"Amount", Currency.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

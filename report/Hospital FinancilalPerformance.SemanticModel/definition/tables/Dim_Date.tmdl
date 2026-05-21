@@ -1,0 +1,116 @@
+table Dim_Date
+	lineageTag: cca1bacc-82b8-4a7c-aab0-13cf0eea2f4f
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5e06be7e-5663-4c66-a6df-734cf8c22d97
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: b7357bf2-85ba-440b-92aa-661c209ea940
+			defaultHierarchy: LocalDateTable_9614ad12-5579-4e8a-93a7-89ef9f963ab8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 1d0d3c19-575f-4a17-bdc9-3e7cd0bbc3f0
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: string
+		lineageTag: 1a0896ec-ad2e-466b-b2a1-c18058e8e37f
+		summarizeBy: none
+		sourceColumn: Quarter
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: 0223d81a-0429-442f-b955-f91877a42b9e
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: 886a5e27-89ac-4417-8f9e-fec4b7c26b74
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: Month
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 72d84f8f-67da-4140-a2d0-ae46fa7a65ff
+		summarizeBy: none
+		sourceColumn: YearMonth
+		sortByColumn: Year
+
+		variation Variation
+			isDefault
+			relationship: 358eac8c-ad27-4d97-a73a-514005057a37
+			defaultHierarchy: LocalDateTable_d1e6477b-e0cb-49c8-a13c-c9ce11efa06f.'Date Hierarchy'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DayOfWeek
+		dataType: string
+		lineageTag: ea10bb39-af67-4d7a-958b-f17c32c2ae07
+		summarizeBy: none
+		sourceColumn: DayOfWeek
+
+		annotation SummarizationSetBy = Automatic
+
+	column IsWeekend
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: acb64e34-498c-4706-be21-028a839cc699
+		summarizeBy: none
+		sourceColumn: IsWeekend
+
+		annotation SummarizationSetBy = Automatic
+
+	column FiscalYear
+		dataType: int64
+		formatString: 0
+		lineageTag: 19e098fe-a713-4fd3-ba29-a2d453ecbb59
+		summarizeBy: sum
+		sourceColumn: FiscalYear
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Date = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("\\Mac\Home\Downloads\HospitalFinancialPerformance.xlsx"), null, true),
+				    Dim_Date_Sheet = Source{[Item="Dim_Date",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Dim_Date_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Date", type date}, {"Year", Int64.Type}, {"Quarter", type text}, {"Month", Int64.Type}, {"MonthName", type text}, {"YearMonth", type date}, {"DayOfWeek", type text}, {"IsWeekend", type logical}, {"FiscalYear", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

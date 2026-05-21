@@ -1,0 +1,32 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["Dim_Payer","Dim_Date","Dim_ServiceLine","Fact_Budget","Fact_Encounters","Fact_OperatingCosts","Dim_Provider"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Dim_Payer
+ref table Dim_Date
+ref table DateTableTemplate_09fb3c50-26c5-421d-a86c-1e4a58cb3833
+ref table LocalDateTable_9614ad12-5579-4e8a-93a7-89ef9f963ab8
+ref table LocalDateTable_d1e6477b-e0cb-49c8-a13c-c9ce11efa06f
+ref table Dim_ServiceLine
+ref table Fact_Budget
+ref table LocalDateTable_2c4420b8-3be3-4d5a-a899-03e8fe611447
+ref table LocalDateTable_19913065-b538-4022-b670-d6221ab8519e
+ref table Fact_Encounters
+ref table Fact_OperatingCosts
+ref table LocalDateTable_0a21a388-a7cf-460c-bf5d-612e7afa9257
+ref table LocalDateTable_50d9e5d2-f53f-42c7-9cbf-126e9c35de6b
+ref table Dim_Provider
+ref table '_Revenue Bridge'
+
+ref cultureInfo en-US
+

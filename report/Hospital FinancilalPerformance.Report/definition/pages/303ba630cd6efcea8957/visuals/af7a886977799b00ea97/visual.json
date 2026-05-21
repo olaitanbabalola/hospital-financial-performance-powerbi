@@ -1,0 +1,328 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "af7a886977799b00ea97",
+  "position": {
+    "x": 8.7471526195899774,
+    "y": 0,
+    "z": 0,
+    "height": 623.96355353075171,
+    "width": 1236.2642369020502,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_% Operating Margin"
+                }
+              },
+              "queryRef": "Fact_Encounters._% Operating Margin",
+              "nativeQueryRef": "_% Operating Margin"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Bridge value"
+                }
+              },
+              "queryRef": "Fact_Encounters._Bridge value",
+              "nativeQueryRef": "_Bridge value"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Net revenue"
+                }
+              },
+              "queryRef": "Fact_Encounters._Net revenue",
+              "nativeQueryRef": "_Net revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Net revenue(per year)"
+                }
+              },
+              "queryRef": "Fact_Encounters._Net revenue(per year)",
+              "nativeQueryRef": "_Net revenue(per year)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Net Yield %"
+                }
+              },
+              "queryRef": "Fact_Encounters._Net Yield %",
+              "nativeQueryRef": "_Net Yield %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_OPERATING MARGIN"
+                }
+              },
+              "queryRef": "Fact_Encounters._OPERATING MARGIN",
+              "nativeQueryRef": "_OPERATING MARGIN"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Revenue per encounter"
+                }
+              },
+              "queryRef": "Fact_Encounters._Revenue per encounter",
+              "nativeQueryRef": "_Revenue per encounter"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Revenue Variance"
+                }
+              },
+              "queryRef": "Fact_Encounters._Revenue Variance",
+              "nativeQueryRef": "_Revenue Variance"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Revenue Variance %"
+                }
+              },
+              "queryRef": "Fact_Encounters._Revenue Variance %",
+              "nativeQueryRef": "_Revenue Variance %"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Total Budget Revenue"
+                }
+              },
+              "queryRef": "Fact_Encounters._Total Budget Revenue",
+              "nativeQueryRef": "_Total Budget Revenue"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Total Charges"
+                }
+              },
+              "queryRef": "Fact_Encounters._Total Charges",
+              "nativeQueryRef": "_Total Charges"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Total Contractuals"
+                }
+              },
+              "queryRef": "Fact_Encounters._Total Contractuals",
+              "nativeQueryRef": "_Total Contractuals"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Total encounters"
+                }
+              },
+              "queryRef": "Fact_Encounters._Total encounters",
+              "nativeQueryRef": "_Total encounters"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_Total Operating Cost"
+                }
+              },
+              "queryRef": "Fact_Encounters._Total Operating Cost",
+              "nativeQueryRef": "_Total Operating Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "_YOY Growth %"
+                }
+              },
+              "queryRef": "Fact_Encounters._YOY Growth %",
+              "nativeQueryRef": "_YOY Growth %"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact_Encounters"
+                        }
+                      },
+                      "Property": "NetRevenue"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Fact_Encounters.NetRevenue)",
+              "nativeQueryRef": "Sum of NetRevenue"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Fact_OperatingCosts"
+                        }
+                      },
+                      "Property": "Amount"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(Fact_OperatingCosts.Amount)",
+              "nativeQueryRef": "Sum of Amount"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_OperatingCosts"
+                    }
+                  },
+                  "Property": "CostCategory"
+                }
+              },
+              "queryRef": "Fact_OperatingCosts.CostCategory",
+              "nativeQueryRef": "CostCategory"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_Encounters"
+                    }
+                  },
+                  "Property": "ServiceLineKey"
+                }
+              },
+              "queryRef": "Fact_Encounters.ServiceLineKey",
+              "nativeQueryRef": "ServiceLineKey"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_ServiceLine"
+                    }
+                  },
+                  "Property": "ServiceLine"
+                }
+              },
+              "queryRef": "Dim_ServiceLine.ServiceLine",
+              "nativeQueryRef": "ServiceLine"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_ServiceLine"
+                    }
+                  },
+                  "Property": "ServiceLineKey"
+                }
+              },
+              "queryRef": "Dim_ServiceLine.ServiceLineKey",
+              "nativeQueryRef": "ServiceLineKey1"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

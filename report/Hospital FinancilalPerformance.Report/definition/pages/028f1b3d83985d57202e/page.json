@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "028f1b3d83985d57202e",
+  "displayName": "Payer Mix and Budget Variance",
+  "displayOption": "FitToPage",
+  "height": 2500,
+  "width": 1900
+}

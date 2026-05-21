@@ -1,0 +1,49 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "225f5f57ada2d24d4df1",
+  "position": {
+    "x": 98.405466970387252,
+    "y": 0,
+    "z": 6000,
+    "height": 102.50569476082005,
+    "width": 1225.9681093394079,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "\t\t\t\t\t\t\t\t\t\t"
+                  },
+                  {
+                    "value": "\t",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "color": "#d64550"
+                    }
+                  },
+                  {
+                    "value": "REVENUE PERFORMANCE ",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "36pt",
+                      "color": "#d64550"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

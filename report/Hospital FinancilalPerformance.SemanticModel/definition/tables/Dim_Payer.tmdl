@@ -1,0 +1,53 @@
+table Dim_Payer
+	lineageTag: c3d4c7d6-b6d3-438c-86b6-898ea9ab1527
+
+	column PayerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: ad2843fd-e1fa-4018-a579-d552d5fe6472
+		summarizeBy: count
+		sourceColumn: PayerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Payer
+		dataType: string
+		lineageTag: 040cfbcf-245f-45f4-a596-d0fae7d3b141
+		summarizeBy: none
+		sourceColumn: Payer
+
+		annotation SummarizationSetBy = Automatic
+
+	column PayerType
+		dataType: string
+		lineageTag: b372d6f1-56c0-476b-b281-aa35a96e6053
+		summarizeBy: none
+		sourceColumn: PayerType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ReimbRate
+		dataType: double
+		lineageTag: a7046e53-afa7-4d87-9180-7819e238856d
+		summarizeBy: sum
+		sourceColumn: ReimbRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Dim_Payer = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("\\Mac\Home\Downloads\HospitalFinancialPerformance.xlsx"), null, true),
+				    Dim_Payer_Sheet = Source{[Item="Dim_Payer",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Dim_Payer_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PayerKey", Int64.Type}, {"Payer", type text}, {"PayerType", type text}, {"ReimbRate", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

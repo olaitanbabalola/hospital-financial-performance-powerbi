@@ -1,0 +1,36 @@
+table '_Revenue Bridge'
+	lineageTag: 96358457-8581-4e96-8a30-4ef380a698cf
+
+	column Step
+		lineageTag: bc2ec3ce-9bd6-4343-b428-25580826b6cf
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Step]
+		sortByColumn: Order
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		formatString: 0
+		lineageTag: 8ffb4d3f-577f-4bcf-94c8-8e456aaede6c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition '_Revenue Bridge' = calculated
+		mode: import
+		source =
+				
+				DATATABLE(
+				            "Step", STRING,
+				            "Order", INTEGER,
+				            {
+				                {"Gross Charges", 1},
+				                {"Contractual Adj", 2}
+				            }
+				)
+
+	annotation PBI_Id = 6631c5798f66412da6645e0f8d094e3e
+

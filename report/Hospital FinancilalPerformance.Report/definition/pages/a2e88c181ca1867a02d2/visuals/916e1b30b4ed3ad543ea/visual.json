@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "916e1b30b4ed3ad543ea",
+  "position": {
+    "x": 0,
+    "y": 19.692307692307693,
+    "z": 5000,
+    "height": 72.2051282051282,
+    "width": 700.17094017094018,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Service Line Profitability",
+                    "textStyle": {
+                      "fontWeight": "bold",
+                      "fontSize": "42pt",
+                      "color": "#d64550"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "center"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

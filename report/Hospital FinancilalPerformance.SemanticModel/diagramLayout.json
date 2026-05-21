@@ -1,0 +1,125 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 37.999036045033563,
+            "y": 646.99269117349309
+          },
+          "nodeIndex": "Dim_Date",
+          "nodeLineageTag": "cca1bacc-82b8-4a7c-aab0-13cf0eea2f4f",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 57.863013698630141,
+            "y": 133.6163488564045
+          },
+          "nodeIndex": "Dim_Payer",
+          "nodeLineageTag": "c3d4c7d6-b6d3-438c-86b6-898ea9ab1527",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 605.09736649852675,
+            "y": 1017.9474620238695
+          },
+          "nodeIndex": "Dim_Provider",
+          "nodeLineageTag": "7da9c0fa-38c5-4152-bfaa-4a1bc8c50a6d",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 566.32071762602277,
+            "y": 8.4540201609850385
+          },
+          "nodeIndex": "Dim_ServiceLine",
+          "nodeLineageTag": "4eda8c93-7a43-49b1-976c-846d896246a6",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 740.14513379497328,
+            "y": 487.210215016661
+          },
+          "nodeIndex": "Fact_Budget",
+          "nodeLineageTag": "ef774565-0792-4488-a19c-5db68d25a94e",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 416.24905436265442,
+            "y": 447.64361314066707
+          },
+          "nodeIndex": "Fact_Encounters",
+          "nodeLineageTag": "4636f1c6-2a8b-48ae-9b2a-f3049af6ef4a",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1110.1915121765915,
+            "y": 526.027397260274
+          },
+          "nodeIndex": "Fact_OperatingCosts",
+          "nodeLineageTag": "aa7c7bfc-5575-4c01-9352-a4628542fdbc",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1129.3506132470281,
+            "y": 0
+          },
+          "nodeIndex": "_Revenue Bridge",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 1
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 38.020833333333329,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

@@ -1,0 +1,224 @@
+table Fact_Encounters
+	lineageTag: 4636f1c6-2a8b-48ae-9b2a-f3049af6ef4a
+
+	measure '_Net revenue' = SUM('Fact_Encounters'[NetRevenue])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: DAX Measures 1
+		lineageTag: bf1a2119-e41d-476f-ab12-ad1c91d326c9
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '_Net revenue(per year)' =
+			CALCULATE(
+			        [_Net revenue], SAMEPERIODLASTYEAR( 'Dim_Date'[Date]))
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: DAX Measures 1
+		lineageTag: 992cfe9f-ecf9-463e-b92f-ed251e905450
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '_YOY Growth %' = ```
+			
+			 VAR Currentrevenue = [_Net revenue]
+			 Var Prioryearrevenue = [_Net revenue(per year)]
+			  RETURN
+			  DIVIDE(Currentrevenue- Prioryearrevenue, Prioryearrevenue, 0)
+			```
+		displayFolder: DAX Measures 1
+		lineageTag: dc406178-7145-4689-a842-988f979f1ead
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total Operating Cost' = SUM (Fact_OperatingCosts[Amount])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: DAX Measures 1
+		lineageTag: 0d40b926-0fcd-4824-b341-497b3efee3e8
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '_OPERATING MARGIN' = [_Net revenue] - [_Total Operating Cost]
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: DAX Measures 1
+		lineageTag: e09efffb-25b1-4860-88fc-89ac73f9d101
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '_% Operating Margin' = DIVIDE( [_OPERATING MARGIN], [_Net revenue])
+		displayFolder: DAX Measures 1
+		lineageTag: 73e2363f-f9e1-488d-bb5a-e907367afdec
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '_Total encounters' = COUNTROWS(Fact_Encounters)
+		formatString: 0
+		displayFolder: DAX Measures 1
+		lineageTag: f53d7e1f-e191-4c1b-a811-ebaed4d8052f
+
+	measure '_Total Charges' = SUM(Fact_Encounters[ChargeAmount])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: DAX Measures 1
+		lineageTag: 5ecc9f80-3546-461c-88ae-1769524da434
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '_Revenue per encounter' = DIVIDE([_Net revenue], [_Total encounters], 0)
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: DAX Measures 1
+		lineageTag: bb69abff-8335-47c1-b7c6-c8f1ba15c7bc
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '_Total Contractuals' = SUM(Fact_Encounters[ContractualAdjustment])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: DAX Measures 1
+		lineageTag: fbe36755-3e6e-4796-bfcb-690e003db60f
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '_Bridge value' = ```
+			
+			            SWITCH(
+			                SELECTEDVALUE('_Revenue Bridge'[Step]), 
+			                "Gross Charges", [_Total Charges],
+			                "Contractual Adj", - [_Total Contractuals], BLANK()
+			                )
+			                
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: DAX Measures 1
+		lineageTag: f4f98045-bdf2-44c8-891e-f2b34faccd36
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '_Net Yield %' = DIVIDE([_Net revenue], [_Total Charges])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: DAX Measures 1
+		lineageTag: f414bcce-d6c7-4615-b647-27a3688de35c
+
+	measure '_Total Budget Revenue' = SUM('Fact_Budget'[BudgetRevenue])
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: DAX Measures 1
+		lineageTag: 7c82b4b3-9f48-4e7c-9ae0-6c023fd9db21
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '_Revenue Variance' = [_Net revenue] - [_Total Budget Revenue]
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		displayFolder: DAX Measures 1
+		lineageTag: 114ad6ce-68db-4e93-a9d9-c0bb47221395
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure '_Revenue Variance %' = DIVIDE([_Revenue Variance], [_Total Budget Revenue])
+		displayFolder: DAX Measures 1
+		lineageTag: 3b9ee29e-7b84-4235-b6f4-1a192edd5880
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EncounterID
+		dataType: int64
+		formatString: 0
+		lineageTag: 936cf3cc-313f-4f35-90f7-09088aa96f1f
+		summarizeBy: count
+		sourceColumn: EncounterID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3cbe0ac6-c561-423a-b57c-36266c9b0a57
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ServiceLineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 0bb34558-8693-471f-aaab-feca4bc3306a
+		summarizeBy: none
+		sourceColumn: ServiceLineKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column PayerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4692c15d-b005-423e-81dd-ae7448d14342
+		summarizeBy: count
+		sourceColumn: PayerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProviderKey
+		dataType: int64
+		formatString: 0
+		lineageTag: b09b16bc-c86a-4dd5-aaa4-c9f7b9bc18ab
+		summarizeBy: count
+		sourceColumn: ProviderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChargeAmount
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: e81344c7-9915-4a6c-9cc5-75dd943b8e15
+		summarizeBy: sum
+		sourceColumn: ChargeAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column PaymentAmount
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: ab2b04a2-9dd3-4dd1-8191-1059d964fe84
+		summarizeBy: sum
+		sourceColumn: PaymentAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column ContractualAdjustment
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: a29d6ec0-9a8f-4b40-a4f0-2d5796638d1e
+		summarizeBy: sum
+		sourceColumn: ContractualAdjustment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column NetRevenue
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 240df22e-94ba-42e1-b133-edc7ca08d1a1
+		summarizeBy: sum
+		sourceColumn: NetRevenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition Fact_Encounters = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("\\Mac\Home\Downloads\HospitalFinancialPerformance.xlsx"), null, true),
+				    Fact_Encounters_Sheet = Source{[Item="Fact_Encounters",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Fact_Encounters_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"EncounterID", Int64.Type}, {"Date", type date}, {"ServiceLineKey", Int64.Type}, {"PayerKey", Int64.Type}, {"ProviderKey", Int64.Type}, {"ChargeAmount", type number}, {"PaymentAmount", type number}, {"ContractualAdjustment", type number}, {"NetRevenue", type number}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"ChargeAmount", Currency.Type}, {"PaymentAmount", Currency.Type}, {"ContractualAdjustment", Currency.Type}, {"NetRevenue", Currency.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

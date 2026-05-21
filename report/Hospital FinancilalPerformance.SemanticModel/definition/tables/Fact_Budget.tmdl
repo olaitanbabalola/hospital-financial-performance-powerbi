@@ -1,0 +1,82 @@
+table Fact_Budget
+	lineageTag: ef774565-0792-4488-a19c-5db68d25a94e
+
+	column YearMonth
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 12eb94d0-408f-4b44-bb03-9d3554f0b967
+		summarizeBy: none
+		sourceColumn: YearMonth
+
+		variation Variation
+			isDefault
+			relationship: 664373b0-b8f4-4de3-8b83-a5acee444e63
+			defaultHierarchy: LocalDateTable_2c4420b8-3be3-4d5a-a899-03e8fe611447.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 087c55f2-111d-4609-a0e9-fb0420dd0d74
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 8b9fb3ea-f5ed-4dbe-9edc-0aa01442861b
+			defaultHierarchy: LocalDateTable_19913065-b538-4022-b670-d6221ab8519e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ServiceLineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4d5a079d-0799-42f8-bd0a-e0a01d379a75
+		summarizeBy: none
+		sourceColumn: ServiceLineKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column BudgetRevenue
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 5e2dc5af-b986-4099-bd80-cf58927517fe
+		summarizeBy: sum
+		sourceColumn: BudgetRevenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column BudgetCost
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: c30ef471-f513-4dd5-bfb3-af5fa3a25e53
+		summarizeBy: sum
+		sourceColumn: BudgetCost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition Fact_Budget = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("\\Mac\Home\Downloads\HospitalFinancialPerformance.xlsx"), null, true),
+				    Fact_Budget_Sheet = Source{[Item="Fact_Budget",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Fact_Budget_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"YearMonth", type date}, {"Date", type date}, {"ServiceLineKey", Int64.Type}, {"BudgetRevenue", type number}, {"BudgetCost", type number}}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Changed Type",{{"BudgetRevenue", Currency.Type}, {"BudgetCost", Currency.Type}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

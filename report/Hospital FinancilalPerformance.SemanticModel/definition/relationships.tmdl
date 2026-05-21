@@ -1,0 +1,55 @@
+relationship b7357bf2-85ba-440b-92aa-661c209ea940
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_Date.Date
+	toColumn: LocalDateTable_9614ad12-5579-4e8a-93a7-89ef9f963ab8.Date
+
+relationship 358eac8c-ad27-4d97-a73a-514005057a37
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Dim_Date.YearMonth
+	toColumn: LocalDateTable_d1e6477b-e0cb-49c8-a13c-c9ce11efa06f.Date
+
+relationship 664373b0-b8f4-4de3-8b83-a5acee444e63
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Fact_Budget.YearMonth
+	toColumn: LocalDateTable_2c4420b8-3be3-4d5a-a899-03e8fe611447.Date
+
+relationship 8b9fb3ea-f5ed-4dbe-9edc-0aa01442861b
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Fact_Budget.Date
+	toColumn: LocalDateTable_19913065-b538-4022-b670-d6221ab8519e.Date
+
+relationship 96c3640d-d51d-4ae2-8563-eb0ef6c608b6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Fact_OperatingCosts.YearMonth
+	toColumn: LocalDateTable_0a21a388-a7cf-460c-bf5d-612e7afa9257.Date
+
+relationship 7b11d51a-47eb-40db-be4c-1d57760163a6
+	joinOnDateBehavior: datePartOnly
+	fromColumn: Fact_OperatingCosts.Date
+	toColumn: LocalDateTable_50d9e5d2-f53f-42c7-9cbf-126e9c35de6b.Date
+
+relationship AutoDetected_f466bf13-3587-461b-ae2c-5b622a17ca47
+	fromColumn: Fact_Budget.ServiceLineKey
+	toColumn: Dim_ServiceLine.ServiceLineKey
+
+relationship AutoDetected_45bf32ba-fd99-442b-8ea6-98f81842e24e
+	fromColumn: Fact_Encounters.ServiceLineKey
+	toColumn: Dim_ServiceLine.ServiceLineKey
+
+relationship AutoDetected_2998dd0f-6971-49db-8b2e-1bfc241bd711
+	fromColumn: Fact_OperatingCosts.ServiceLineKey
+	toColumn: Dim_ServiceLine.ServiceLineKey
+
+relationship AutoDetected_5bf5af90-0d9f-4c2c-8a7b-533dd935c0f4
+	fromColumn: Dim_Provider.ServiceLineKey
+	toColumn: Dim_ServiceLine.ServiceLineKey
+
+relationship AutoDetected_9d0e5dd0-7ca4-4f64-a02e-ca4406f6da6e
+	isActive: false
+	fromColumn: Fact_Encounters.ProviderKey
+	toColumn: Dim_Provider.ProviderKey
+
+relationship 47ddff81-dd95-725d-5359-94ee96a7c524
+	fromColumn: Fact_Encounters.Date
+	toColumn: Dim_Date.Date
+

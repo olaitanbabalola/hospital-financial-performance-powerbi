@@ -1,0 +1,52 @@
+table Dim_Provider
+	lineageTag: 7da9c0fa-38c5-4152-bfaa-4a1bc8c50a6d
+
+	column ProviderKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 90cdea60-5dcd-4128-bb77-284b72304790
+		summarizeBy: count
+		sourceColumn: ProviderKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProviderName
+		dataType: string
+		lineageTag: 08353ec3-b80e-4701-85f6-e74f7925c9c7
+		summarizeBy: none
+		sourceColumn: ProviderName
+
+		annotation SummarizationSetBy = Automatic
+
+	column ServiceLineKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a937094-938e-445e-8822-dee748669e48
+		summarizeBy: none
+		sourceColumn: ServiceLineKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProviderType
+		dataType: string
+		lineageTag: 4dbeba37-1dbe-4b2d-9e82-864d3069bdb5
+		summarizeBy: none
+		sourceColumn: ProviderType
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Provider = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("\\Mac\Home\Downloads\HospitalFinancialPerformance.xlsx"), null, true),
+				    Dim_Provider_Sheet = Source{[Item="Dim_Provider",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Dim_Provider_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"ProviderKey", Int64.Type}, {"ProviderName", type text}, {"ServiceLineKey", Int64.Type}, {"ProviderType", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
